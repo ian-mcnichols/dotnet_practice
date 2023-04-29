@@ -17,5 +17,5 @@ static async Task ProcessRepositoriesAsync(HttpClient client)
     var respositories = await JsonSerializer.DeserializeAsync<List<Repository>>(stream);
 
     foreach (var repo in respositories ?? Enumerable.Empty<Repository>())
-        Console.Write(repo.name);
+        Console.Write(repo.Name, " \n");
 }
