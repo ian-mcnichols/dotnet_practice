@@ -16,6 +16,7 @@ foreach (var repo in repos) {
     Console.WriteLine($"Github: {repo.GitHubHomeUrl}");
     Console.WriteLine($"Description: {repo.Description}");
     Console.WriteLine($"Watchers: {repo.Watchers}");
+    Console.WriteLine($"Last Push: {repo.LastPush}");
     Console.WriteLine("==============================");
 }
 
