@@ -13,7 +13,7 @@ var repos = await ProcessRepositoriesAsync(client);
 foreach (var repo in repos) {
     Console.WriteLine($"Name: {repo.Name}");
     Console.WriteLine($"Homepage: {repo.Homepage}");
-    Console.WriteLine($"Github: {repo.GitHub}");
+    Console.WriteLine($"Github: {repo.GitHubHomeUrl}");
     Console.WriteLine($"Description: {repo.Description}");
     Console.WriteLine($"Watchers: {repo.Watchers}");
     Console.WriteLine("==============================");
