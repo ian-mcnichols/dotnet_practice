@@ -21,7 +21,8 @@ class Program
 
             Console.WriteLine($"Hello {userName}. Let's play a game.");
 
-            int correctNumber = 5;
+            Random rnd = new Random();
+            int correctNumber = rnd.Next(1, 10);
 
             Console.WriteLine("Guess a number from 1 to 10");
             int guessNumber = GetUserGuess();
