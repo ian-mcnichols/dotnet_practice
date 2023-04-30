@@ -20,23 +20,21 @@ class Program
             string userName = Console.ReadLine();
 
             Console.WriteLine($"Hello {userName}. Let's play a game.");
-
-            Random rnd = new Random();
-            int correctNumber = rnd.Next(1, 10);
-
-            Console.WriteLine("Guess a number from 1 to 10");
-            int guessNumber = GetUserGuess();
-
-            while (guessNumber != correctNumber)
+            bool YesPlay = true;
+            while (YesPlay)
             {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Incorrect guess. Try again! ");
+                PlayGame();
                 Console.ResetColor();
-                guessNumber = GetUserGuess();
-
+                Console.WriteLine("Press any key to play again. Type 'Q' to quit.");
+                string PlayerChoice = Console.ReadLine();
+                if (PlayerChoice == "Q")
+                {
+                    YesPlay = false;
+                    Console.WriteLine($"Goodbye {userName}");
+                }
+                Console.Clear();
             }
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Correct! You won.");
+
     }
     static bool CheckInt(string input)
     {
@@ -48,20 +46,40 @@ class Program
         return false;         
     }
     static int GetUserGuess()
+    {
+        string userInput = Console.ReadLine();
+        bool isInt = CheckInt(userInput);
+        while (!isInt)
         {
-            string userInput = Console.ReadLine();
-            bool isInt = CheckInt(userInput);
-            while (!isInt)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid input. Must be integer guess.");
-                Console.ResetColor();
-                userInput = Console.ReadLine();
-                isInt = CheckInt(userInput);
-            }
-            int userGuess = Int32.Parse(userInput);
-            return userGuess;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Invalid input. Must be integer guess.");
+            Console.ResetColor();
+            userInput = Console.ReadLine();
+            isInt = CheckInt(userInput);
         }
-}
+        int userGuess = Int32.Parse(userInput);
+        return userGuess;
+    }
+
+    static void PlayGame()
+    {
+        Random rnd = new Random();
+        int correctNumber = rnd.Next(1, 10);
+
+        Console.WriteLine("Guess a number from 1 to 10");
+        int guessNumber = GetUserGuess();
+
+        while (guessNumber != correctNumber)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Incorrect guess. Try again! ");
+            Console.ResetColor();
+            guessNumber = GetUserGuess();
+
+        }
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine("Correct! You won.");
+    }
+    }
 
 }
